@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
-import CreateArea from "./CreateArea";
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Note from "./components/Note";
+import CreateArea from "./components/CreateArea";
 
 function App() {
   const [notes, setNotes] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000")
-    .then(data => data.json())
-    .then(data => {
-      data.map((note) => addNote({title:note.title, content:note.content}))
-    })
-  },[])
+  
 
   function addNote(newNote) {
     setNotes(prevNotes => {

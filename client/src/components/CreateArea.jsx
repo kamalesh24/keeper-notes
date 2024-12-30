@@ -29,14 +29,6 @@ function CreateArea(props) {
     function submitNote(event) {
         event.preventDefault();
         props.onAdd(note);
-        const resp = fetch("http://localhost:5000", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(note)
-        })
-        console.log(resp)
 
         setNote({
             title: "",
