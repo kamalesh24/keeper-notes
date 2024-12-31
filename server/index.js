@@ -39,13 +39,18 @@ app.route('/api/notes/:id')
 .delete(async (req, res) => {
     try {
         const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid ID format' });
+        }
+
         const deleteNote = await Note.findByIdAndDelete(id);
 
         if(!deleteNote){
             return res.json({message: "Note doesnot exist."});
         }
 
-        res.json({message: "Note deleted successfully."});
+        res.json(deleteNote);
 
     } catch (error) {
         res.json({message: error.message});
